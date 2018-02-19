@@ -9,7 +9,7 @@ void ofApp::setup(){
 		buff = file.readToBuffer();
 		cout << buff.getText();
 	} else {
-		string s = "foo";
+		string s = hostname + "_" + ofGetTimestampString();
 		buff.set(s.c_str(), s.size());
 		bool fileWritten = ofBufferToFile("hostname.txt", buff);
 	}

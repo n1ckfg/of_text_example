@@ -23,5 +23,6 @@ class ofApp : public ofBaseApp{
 
 		ofFile file;
 		ofBuffer buff;
+		string hostname = "RPi";
 		
 };
