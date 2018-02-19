@@ -2,17 +2,19 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	// http://openframeworks.cc/documentation/utils/ofFile/
-
 	file.open(ofToDataPath("hostname.txt"), ofFile::ReadWrite, false);
 	if (file) {
 		buff = file.readToBuffer();
-		cout << buff.getText();
+		hostname = buff.getText();
 	} else {
-		string s = hostname + "_" + ofGetTimestampString();
-		buff.set(s.c_str(), s.size());
-		bool fileWritten = ofBufferToFile("hostname.txt", buff);
+		hostname += "_" + ofGetTimestampString("%y-%m-%d-%H-%M-%S-%i");
+		ofStringReplace(hostname, "-", "");
+		ofStringReplace(hostname, "\n", "");
+		ofStringReplace(hostname, "\r", "");
+		buff.set(hostname.c_str(), hostname.size());
+		ofBufferToFile("hostname.txt", buff);
 	}
+	cout << hostname;
 }
 
 //--------------------------------------------------------------
