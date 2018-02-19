@@ -2,7 +2,17 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+	// http://openframeworks.cc/documentation/utils/ofFile/
 
+	file.open(ofToDataPath("hostname.txt"), ofFile::ReadWrite, false);
+	if (file) {
+		buff = file.readToBuffer();
+		cout << buff.getText();
+	} else {
+		string s = "foo";
+		buff.set(s.c_str(), s.size());
+		bool fileWritten = ofBufferToFile("hostname.txt", buff);
+	}
 }
 
 //--------------------------------------------------------------
